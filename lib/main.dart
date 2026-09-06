@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+
 void main() {
+  Profil(nama: 'fasaufa fiaunila', nim: '362558302042', emailKampus: 'fasa@poliwangi.ac.id').tampilkanInfo();
+  runApp(const PoliwangiProfileApp());
   runApp(const PoliwangiProfileApp());
 }
 
 class PoliwangiProfileApp extends StatelessWidget {
   const PoliwangiProfileApp({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Profil Mahasiswa TRPL',
+      title: 'Fasaufa fiaunila',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF0284C7),
@@ -31,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
         title: const Text(
-          'Profil Mahasiswa',
+          'Fasaufa fiaunila',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         backgroundColor: const Color(0xFF0284C7),
@@ -109,6 +113,7 @@ class ProfileScreen extends StatelessWidget {
                   padding: EdgeInsets.all(20.0),
                   child: Column(
                     children: [
+                      
                       _InfoRow(
                         icon: Icons.business_rounded,
                         label: 'Jurusan',
@@ -132,10 +137,35 @@ class ProfileScreen extends StatelessWidget {
                         label: 'Semester / TA',
                         value: 'Semester 3 (2026/2027)',
                       ),
+                      Divider(height: 24, color: Color(0xFFF1F5F9)),
+                      _InfoRow(
+                        icon: Icons.calendar_today_rounded,
+                        label: 'Akun GitHub',
+                        value: 'github.com/fasaufa_creator',
+                      ),
+                      Divider(height: 24, color: Color(0xFFF1F5F9)),
+                      _InfoRow(
+                        icon: Icons.calendar_today_rounded,
+                        label: 'Minat Rekayasa',
+                        value: 'Software Engineer',
+                      ),
                     ],
                   ),
                 ),
               ),
+              const SizedBox(height: 20),
+                ElevatedButton.icon(
+  onPressed: () {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('github.com/fasaufa_creator'),
+        duration: Duration(seconds: 3),
+      ),
+    );
+  },
+  icon: const Icon(Icons.open_in_new),
+  label: const Text('Lihat Profil GitHub'),
+)
             ],
           ),
         ),
@@ -154,6 +184,7 @@ class _InfoRow extends StatelessWidget {
     required this.label,
     required this.value,
   });
+  
 
   @override
   Widget build(BuildContext context) {
@@ -194,5 +225,16 @@ class _InfoRow extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+class Profil{
+  String nama;
+  String nim;
+  String? emailKampus;
+
+Profil({required this.nama, required this.nim, this.emailKampus});
+
+void tampilkanInfo(){
+  print('$nama, $nim | Email:${emailKampus ?? '(belum ada email)'}');
   }
 }
